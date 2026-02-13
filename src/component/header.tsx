@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <header className="bg-white shadow-lg rounded-4xl py-6 px-10">
+    <header className="bg-white shadow-lg rounded-4xl py-6 px-10 sticky top-0 z-10">
       <nav className="flex items-center justify-between">
         <a href="" className="text-3xl font-bold">
           logo

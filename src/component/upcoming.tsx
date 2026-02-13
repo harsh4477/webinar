@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-interface WebinarVideo {
+interface upComingVideo {
   id: string;
   title: string;
   description: string;
@@ -9,7 +9,7 @@ interface WebinarVideo {
   date: string;
 }
 
-const webinarVideos: WebinarVideo[] = [
+const upComingVideo: upComingVideo[] = [
   {
     id: '1',
     title: 'Introduction to React Development',
@@ -18,20 +18,12 @@ const webinarVideos: WebinarVideo[] = [
     videoUrl: '../../public/GMT20260204.mp4',
     date: '2024-01-15'
   },
-  // {
-  //   id: '2',
-  //   title: 'Small GIANTS India',
-  //   description: 'Fund Category 3 AIF Long Only',
-  //   thumbnail: '../../public/2026_Global_Investor.png',
-  //   videoUrl: '../../public/2026_Global_Investor.mp4',
-  //   date: '2024-01-15'
-  // },
 ];
 
-function Webinar() {
-  const [selectedVideo, setSelectedVideo] = useState<WebinarVideo | null>(null);
+function Upcoming() {
+  const [selectedVideo, setSelectedVideo] = useState<upComingVideo | null>(null);
 
-  const openVideoModal = (video: WebinarVideo) => {
+  const openVideoModal = (video: upComingVideo) => {
     setSelectedVideo(video);
   };
 
@@ -43,11 +35,11 @@ function Webinar() {
     <>
       <div className="px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Webinar Library</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Up-Coming Webinar</h1>
           <p className="text-lg text-gray-600">Explore our collection of educational webinars on modern web development</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {webinarVideos.map((video) => (
+          {upComingVideo.map((video) => (
             <div key={video.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative">
                 <img 
@@ -119,4 +111,4 @@ function Webinar() {
   )
 }
 
-export default Webinar
+export default Upcoming
