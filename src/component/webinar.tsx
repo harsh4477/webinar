@@ -14,7 +14,7 @@ const webinarVideos: WebinarVideo[] = [
     id: '1',
     title: 'Introduction to React Development',
     description: 'Learn the basics of React and modern web development practices.',
-    thumbnail: '/public/GMT20260204.png',
+    thumbnail: '/GMT20260204.png',
     videoUrl: 'https://drive.google.com/file/d/1jj88hSdFI0EjFPgNqv78n6E9W_R9-Eqs/preview',
     date: '2024-01-15'
   },
@@ -22,7 +22,7 @@ const webinarVideos: WebinarVideo[] = [
     id: '2',
     title: 'Small GIANTS India',
     description: 'Fund Category 3 AIF Long Only',
-    thumbnail: '/public/2026_Global_Investor.png',
+    thumbnail: '/2026_Global_Investor.png',
     videoUrl: 'https://drive.google.com/file/d/1MaLFXPzs6cItqp4mTWhCIt-d_slqnHZQ/preview',
     date: '2024-01-15'
   },
