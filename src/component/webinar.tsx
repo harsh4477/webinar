@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface WebinarVideo {
   id: string;
@@ -15,21 +15,23 @@ const webinarVideos: WebinarVideo[] = [
     title: 'Introduction to React Development',
     description: 'Learn the basics of React and modern web development practices.',
     thumbnail: '../../public/GMT20260204.png',
-    videoUrl: '../../public/GMT20260204.mp4',
+    videoUrl: 'https://drive.google.com/file/d/1jj88hSdFI0EjFPgNqv78n6E9W_R9-Eqs/preview',
     date: '2024-01-15'
   },
-  // {
-  //   id: '2',
-  //   title: 'Small GIANTS India',
-  //   description: 'Fund Category 3 AIF Long Only',
-  //   thumbnail: '../../public/2026_Global_Investor.png',
-  //   videoUrl: '../../public/2026_Global_Investor.mp4',
-  //   date: '2024-01-15'
-  // },
+  {
+    id: '2',
+    title: 'Small GIANTS India',
+    description: 'Fund Category 3 AIF Long Only',
+    thumbnail: '../../public/2026_Global_Investor.png',
+    videoUrl: 'https://drive.google.com/file/d/1MaLFXPzs6cItqp4mTWhCIt-d_slqnHZQ/preview',
+    date: '2024-01-15'
+  },
 ];
 
 function Webinar() {
   const [selectedVideo, setSelectedVideo] = useState<WebinarVideo | null>(null);
+  const [iframeDimensions, setIframeDimensions] = useState({ width: 854, height: 480 });
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const openVideoModal = (video: WebinarVideo) => {
     setSelectedVideo(video);
@@ -38,6 +40,40 @@ function Webinar() {
   const closeModal = () => {
     setSelectedVideo(null);
   };
+
+  useEffect(() => {
+    if (selectedVideo) {
+      // Set initial dimensions
+      const updateDimensions = () => {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const maxWidth = viewportWidth * 0.9;
+        const maxHeight = viewportHeight * 0.8;
+        
+        // Google Drive preview typically uses 16:9 aspect ratio
+        const aspectRatio = 16 / 9;
+        
+        let width = Math.min(maxWidth, 854);
+        let height = width / aspectRatio;
+        
+        if (height > maxHeight) {
+          height = maxHeight;
+          width = height * aspectRatio;
+        }
+        
+        setIframeDimensions({ width: Math.round(width), height: Math.round(height) });
+      };
+      
+      updateDimensions();
+      
+      // Listen for resize events
+      window.addEventListener('resize', updateDimensions);
+      
+      return () => {
+        window.removeEventListener('resize', updateDimensions);
+      };
+    }
+  }, [selectedVideo]);
 
   return (
     <>
@@ -48,7 +84,7 @@ function Webinar() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {webinarVideos.map((video) => (
-            <div key={video.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div key={video.id} className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative">
                 <img 
                   src={video.thumbnail} 
@@ -71,10 +107,10 @@ function Webinar() {
                 
               </div>
               
-              <div className="p-4">
+              <div className="flex flex-col flex-1 p-4">
                 <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">{video.title}</h3>
                 <p className="text-gray-600 text-sm mb-3 line-clamp-2">{video.description}</p>
-                <div className="flex justify-between items-center text-sm text-gray-500">
+                <div className="flex justify-between items-center text-sm text-gray-500 mt-auto">
                   <span>{new Date(video.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                   <button 
                     onClick={(e) => {
@@ -102,16 +138,15 @@ function Webinar() {
               ×
             </button>
             <div className="bg-black rounded-lg overflow-hidden">
-              <video
-                src={selectedVideo.videoUrl}
-                controls
-                autoPlay
-                className="w-full h-auto max-h-[80vh]"
-              >
-                <source src={selectedVideo.videoUrl} type="video/mp4" />
-                <source src={selectedVideo.videoUrl} type="video/ogg" />
-                Your browser does not support the video tag.
-              </video>
+              <iframe 
+                ref={iframeRef}
+                src={`${selectedVideo.videoUrl}`}
+                width={iframeDimensions.width}
+                height={iframeDimensions.height}
+                className="border-0"
+                allow="autoplay; fullscreen;"
+                allowFullScreen
+              ></iframe>
             </div>
         </div>
       )}
