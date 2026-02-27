@@ -77,10 +77,10 @@ function Webinar() {
 
   return (
     <>
-      <div className="px-4 py-8">
+      <div className="md:px-4 py-8 relative z-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Webinar Library</h1>
-          <p className="text-lg text-gray-600">Explore our collection of educational webinars on modern web development</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Webinar Library</h1>
+          <p className="text-base md:text-lg text-gray-50">Explore our collection of educational webinars on modern web development</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {webinarVideos.map((video) => (
@@ -97,7 +97,7 @@ function Webinar() {
                       e.stopPropagation();
                       openVideoModal(video);
                     }}
-                    className="bg-red-600 hover:bg-red-700 text-white rounded-full p-3 transform hover:scale-110 transition-transform duration-200 cursor-pointer"
+                    className="btn-primary text-white rounded-full p-3 transform hover:scale-110 transition-transform duration-200 cursor-pointer"
                   >
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
@@ -117,7 +117,7 @@ function Webinar() {
                       e.stopPropagation();
                       openVideoModal(video);
                     }}
-                    className="text-blue-600 hover:text-blue-800 font-medium cursor-pointer"
+                    className="text-gradient font-semibold cursor-pointer hover:opacity-80 transition-opacity"
                   >
                     Watch Now
                   </button>

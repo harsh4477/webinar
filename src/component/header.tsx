@@ -1,18 +1,17 @@
 function Header() {
   return (
-    <header className="bg-white shadow-lg rounded-4xl py-6 px-10 sticky top-0 z-10">
+    <header className="bg-white shadow-lg rounded-4xl py-6 px-6 md:px-10 sticky top-0 z-20">
       <nav className="flex items-center justify-between">
-        <a href="" className="text-3xl font-bold">
-          logo
+        <a href="" className="text-2xl md:text-3xl font-bold text-gradient">
+          Webinar 
         </a>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <a href="" target="_blank">
             <svg
-              width="24px"
-              height="24px"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               fill="#000000"
+              className="size-5 md:size-6"
             >
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g
@@ -31,12 +30,11 @@ function Header() {
           </a>
           <a href="" target="_blank">
             <svg
-              width="24px"
-              height="24px"
               viewBox="0 -4 48 48"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               fill="#000000"
+              className="size-5 md:size-6"
             >
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g
