@@ -12,7 +12,7 @@ const upComingVideo: upComingVideo[] = [
     title: "Introduction to React Development",
     description:
       "Learn the basics of React and modern web development practices.",
-    thumbnail: "../../public/GMT20260204.png",
+    thumbnail: "/GMT20260204.png",
     date: "2024-01-15",
   },
 ];
