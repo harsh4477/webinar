@@ -9,10 +9,10 @@ function App() {
   return (
     <div className='relative p-4 h-screen overflow-auto'>
       <Background />
-      <Header/>
-      <Webinar/>
-      <Upcoming/>
-      <Speaker/>
+      <Header />
+      <Webinar />
+      <Upcoming />
+      <Speaker />
     </div>
   )
 }

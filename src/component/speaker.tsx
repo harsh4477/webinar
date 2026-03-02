@@ -47,7 +47,7 @@ function Speaker() {
                 href={founder.linkedinLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute top-4 right-4 p-2 rounded-full transition-opacity duration-300 bg-purple-600"
+                className="absolute top-4 right-4 p-2 rounded-full transition-opacity duration-300 bg-blue-800"
                 aria-label={`Connect with ${founder.name} on LinkedIn`}
               >
                 <svg
@@ -72,7 +72,7 @@ function Speaker() {
                   </g>
                 </svg>
               </a>
-              <div className="absolute bottom-0 left-0 w-full bg-purple-600 p-2">
+              <div className="absolute bottom-0 left-0 w-full bg-blue-800 p-2">
                 <h3 className="text-xl md:text-2xl font-bold mb-1 text-center text-white">
                   {founder.name}
                 </h3>

@@ -49,26 +49,26 @@ function Webinar() {
         const viewportHeight = window.innerHeight;
         const maxWidth = viewportWidth * 0.9;
         const maxHeight = viewportHeight * 0.8;
-        
+
         // Google Drive preview typically uses 16:9 aspect ratio
         const aspectRatio = 16 / 9;
-        
+
         let width = Math.min(maxWidth, 854);
         let height = width / aspectRatio;
-        
+
         if (height > maxHeight) {
           height = maxHeight;
           width = height * aspectRatio;
         }
-        
+
         setIframeDimensions({ width: Math.round(width), height: Math.round(height) });
       };
-      
+
       updateDimensions();
-      
+
       // Listen for resize events
       window.addEventListener('resize', updateDimensions);
-      
+
       return () => {
         window.removeEventListener('resize', updateDimensions);
       };
@@ -86,14 +86,14 @@ function Webinar() {
           {webinarVideos.map((video) => (
             <div key={video.id} className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="relative">
-                <img 
-                  src={video.thumbnail} 
+                <img
+                  src={video.thumbnail}
                   alt={video.title}
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/30 backdrop-blur-[2px]">
-                  <button 
-                   onClick={(e) => {
+                  <button
+                    onClick={(e) => {
                       e.stopPropagation();
                       openVideoModal(video);
                     }}
@@ -104,15 +104,15 @@ function Webinar() {
                     </svg>
                   </button>
                 </div>
-                
+
               </div>
-              
+
               <div className="flex flex-col flex-1 p-4">
                 <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">{video.title}</h3>
                 <p className="text-gray-600 text-sm mb-3 line-clamp-2">{video.description}</p>
                 <div className="flex justify-between items-center text-sm text-gray-500 mt-auto">
                   <span>{new Date(video.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-                  <button 
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
                       openVideoModal(video);
@@ -132,22 +132,22 @@ function Webinar() {
       {selectedVideo && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4" onClick={closeModal}>
           <button
-              onClick={closeModal}
-              className="absolute top-5 right-5 text-white hover:text-gray-300 text-4xl font-bold z-10 cursor-pointer"
-            >
-              ×
-            </button>
-            <div className="bg-black rounded-lg overflow-hidden">
-              <iframe 
-                ref={iframeRef}
-                src={`${selectedVideo.videoUrl}`}
-                width={iframeDimensions.width}
-                height={iframeDimensions.height}
-                className="border-0"
-                allow="autoplay; fullscreen;"
-                allowFullScreen
-              ></iframe>
-            </div>
+            onClick={closeModal}
+            className="absolute top-5 right-5 text-white hover:text-gray-300 text-4xl font-bold z-10 cursor-pointer"
+          >
+            ×
+          </button>
+          <div className="bg-black rounded-lg overflow-hidden">
+            <iframe
+              ref={iframeRef}
+              src={`${selectedVideo.videoUrl}`}
+              width={iframeDimensions.width}
+              height={iframeDimensions.height}
+              className="border-0"
+              allow="autoplay; fullscreen;"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       )}
     </>
