@@ -1,4 +1,4 @@
-interface upComingVideo {
+interface UpComingVideo {
   id: string;
   title: string;
   description: string;
@@ -6,7 +6,7 @@ interface upComingVideo {
   date: string;
 }
 
-const upComingVideo: upComingVideo[] = [
+const upComingVideos: UpComingVideo[] = [
   {
     id: "1",
     title: "Introduction to React Development",
@@ -18,54 +18,55 @@ const upComingVideo: upComingVideo[] = [
 ];
 
 function Upcoming() {
-
   return (
     <>
-      <div className="md:px-4 py-8 relative z-10">
+      <section className="md:px-4 py-8 relative z-10" aria-labelledby="upcoming-webinars-heading">
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-            Up-Coming Webinar
-          </h1>
+          <h2 id="upcoming-webinars-heading" className="text-3xl md:text-4xl font-bold text-white mb-2">
+            Upcoming Webinars
+          </h2>
           <p className="text-base md:text-lg text-white">
-            Explore our collection of educational webinars on modern web
-            development
+            Stay tuned for our upcoming live sessions and interactive market discussions
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {upComingVideo.map((video) => (
-            <div
+          {upComingVideos.map((video) => (
+            <article
               key={video.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col"
             >
               <div className="relative">
                 <img
                   src={video.thumbnail}
-                  alt={video.title}
+                  alt={`Upcoming webinar thumbnail: ${video.title}`}
+                  loading="lazy"
                   className="w-full h-48 object-cover"
                 />
               </div>
 
-              <div className="p-4">
+              <div className="p-4 flex flex-col flex-1">
                 <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">
                   {video.title}
                 </h3>
                 <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                   {video.description}
                 </p>
-                <div className="flex justify-between items-center text-sm text-gray-500">
+                <div className="flex justify-between items-center text-sm text-gray-500 mt-auto">
                   <span>
-                    {new Date(video.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    <time dateTime={video.date}>
+                      {new Date(video.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </time>
                   </span>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 }
