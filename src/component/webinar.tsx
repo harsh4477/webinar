@@ -193,11 +193,6 @@ function Webinar() {
               allow="autoplay; fullscreen"
               allowFullScreen
             ></iframe>
-            {/* Mask/Overlay to cover and block the Google Drive Pop-out button */}
-            <div
-              className="absolute top-0 right-0 w-16 h-14 bg-black z-10 pointer-events-auto"
-              aria-hidden="true"
-            />
           </div>
         </div>
       )}
